@@ -7,7 +7,7 @@ from io import BytesIO
 
 # -------------------------------
 # Konfigurasi API OpenRouter
-API_KEY = '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'
+API_KEY = st.secret['API_KEY']
 API_URL = 'https://openrouter.ai/api/v1/chat/completions'
 headers = {
     'Authorization': f'Bearer {API_KEY}',
@@ -32,18 +32,7 @@ data_jawaban['jenis_kelamin'] = st.radio("Jenis Kelamin:", ('Laki-laki', 'Peremp
 
 # -------------------------------
 # Daftar Pertanyaan
-pertanyaan_wawancara = [
-    "Ceritakan saat Anda harus mengatakan ‘tidak’ pada permintaan yang bertentangan dengan prioritas Anda dari seseorang yang dekat dengan anda. Bagaimana cara Anda menanganinya?",
-    "Ceritakan tentang sebuah proyek di mana Anda harus memilih antara deadline atau hasil ideal anda",
-    "Bagaimana Anda tetap termotivasi ketika kontribusi Anda kurang mendapat perhatian atau apresiasi?",
-    "Ceritakan situasi di mana Anda harus memimpin atau mempengaruhi orang lain tanpa memiliki wewenang formal. Apa yang Anda lakukan?",
-    "Ceritakan pengalaman saat anda mengambil keputusan yang berisiko baik di dunia kerja maupun di kehidupan pribadi, bagaimana Anda menimbang untung-ruginya?",
-    "Bagaimana respon anda ketika anggota tim mengajukan ide yang cukup radikal namun bisa mempengaruhi proses kerja saat ini?",
-    "Ceritakan bagaimana anda mengembangkan strategi untuk proyek jangka panjang. Langkah-langkah apa yang anda prioritaskan terlebih dahulu?",
-    "Ceritakan saat anda harus beradaptasi pada sebuah lingkungan atau proses yang baru. Bagaimana anda menghadapinya?",
-    "Ceritakan saat anda mendapatkan kritik yang tidak terduga atau cukup keras? Bagaimana anda menggunakannya untuk berkembang atau mengubah cara kerja anda?"
-]
-
+pertanyaan_wawancara = st.secret['pertanyaan_wawancara']
 # -------------------------------
 # Form Jawaban
 st.header("📝 Jawaban Wawancara Kandidat")
