@@ -151,6 +151,19 @@ Please provide the output **strictly in valid JSON** with the exact structure be
   },
   "conclusion": ""
 }
+
+Instructions:
+1. For each of the nine questions, fill in "summary" with a concise recap of what the candidate said.
+2. In "observed_traits", list any relevant behaviors or personality indicators you notice (e.g., empathy, conflict avoidance, leadership inclination, etc.).
+3. In "analysis", provide general observations about their overall strengths, potential weaknesses, and any contradictions or notable patterns within these nine answers.
+4. In "conclusion", give a short statement (1–3 sentences) summarizing your overall impression from the interview alone.
+5. Do NOT reference or compare these answers to any external assessments.
+
+Below is the interview transcript:
+[INSERT CANDIDATE’S TRANSCRIPT HERE]
+
+Note: If some information is missing or unclear, leave fields blank or empty arrays. Do NOT add extra keys or text. 
+
 """
              },
             {"role": "user", "content": input_pengguna}
