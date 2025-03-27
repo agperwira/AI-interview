@@ -7,7 +7,7 @@ from io import BytesIO
 
 # -------------------------------
 # Konfigurasi API OpenRouter
-API_KEY = st.secret['API_KEY']
+API_KEY = st.secrets['API_KEY']
 API_URL = 'https://openrouter.ai/api/v1/chat/completions'
 headers = {
     'Authorization': f'Bearer {API_KEY}',
@@ -32,7 +32,7 @@ data_jawaban['jenis_kelamin'] = st.radio("Jenis Kelamin:", ('Laki-laki', 'Peremp
 
 # -------------------------------
 # Daftar Pertanyaan
-pertanyaan_wawancara = st.secret['pertanyaan_wawancara']
+pertanyaan_wawancara = st.secrets['pertanyaan_wawancara']
 # -------------------------------
 # Form Jawaban
 st.header("📝 Jawaban Wawancara Kandidat")
