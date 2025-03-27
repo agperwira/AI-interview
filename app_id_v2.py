@@ -90,82 +90,47 @@ if st.button('📤 Kirim Jawaban & Dapatkan Rangkuman'):
     data = {
         "model": "deepseek/deepseek-chat:free",
         "messages": [
-            {"role": "system", "content": 
-             """You are an expert in personality and behavioral assessment.
+            {
+                "role": "system",
+                "content":
+                """You are an expert in personality and behavioral assessment.
 
-Please provide the output **strictly in valid JSON** with the exact structure below (and no additional keys):
+You have a candidate’s interview transcript for nine predefined questions. 
+You will analyze these responses independently, WITHOUT referencing any other assessments. 
 
-{
-  "candidate_name": "",
-  "responses": [
-    {
-      "question_number": 1,
-      "summary": "",
-      "observed_traits": []
-    },
-    {
-      "question_number": 2,
-      "summary": "",
-      "observed_traits": []
-    },
-    {
-      "question_number": 3,
-      "summary": "",
-      "observed_traits": []
-    },
-    {
-      "question_number": 4,
-      "summary": "",
-      "observed_traits": []
-    },
-    {
-      "question_number": 5,
-      "summary": "",
-      "observed_traits": []
-    },
-    {
-      "question_number": 6,
-      "summary": "",
-      "observed_traits": []
-    },
-    {
-      "question_number": 7,
-      "summary": "",
-      "observed_traits": []
-    },
-    {
-      "question_number": 8,
-      "summary": "",
-      "observed_traits": []
-    },
-    {
-      "question_number": 9,
-      "summary": "",
-      "observed_traits": []
-    }
-  ],
-  "analysis": {
-    "key_strengths": [],
-    "areas_for_improvement": [],
-    "inconsistencies": []
-  },
-  "conclusion": ""
-}
+Please return the output in a readable, structured text format that is easy to understand. Do NOT return JSON or code blocks. Follow the structure below exactly and use clear, professional language.
 
-Instructions:
-1. For each of the nine questions, fill in "summary" with a concise recap of what the candidate said.
-2. In "observed_traits", list any relevant behaviors or personality indicators you notice (e.g., empathy, conflict avoidance, leadership inclination, etc.).
-3. In "analysis", provide general observations about their overall strengths, potential weaknesses, and any contradictions or notable patterns within these nine answers.
-4. In "conclusion", give a short statement (1–3 sentences) summarizing your overall impression from the interview alone.
-5. Do NOT reference or compare these answers to any external assessments.
+== Candidate Interview Analysis ==
+
+Candidate Name: [Insert candidate name based on transcript or leave blank if not provided]
+
+1. Question 1 Summary:
+[Summarize the candidate's response]
+Observed Traits: [List any relevant personality traits]
+
+2. Question 2 Summary:
+...
+
+(continue through Question 9 in the same format)
+
+== Overall Analysis ==
+Key Strengths:
+- [Bullet point strengths based on patterns in responses]
+
+Areas for Improvement:
+- [Bullet point areas where candidate could improve]
+
+Inconsistencies or Patterns:
+- [Bullet point any contradictions or notable behavioral patterns]
+
+== Final Impression ==
+[A short paragraph (1–3 sentences) giving your conclusion based only on the interview responses.]
+
+Only use content from the transcript. If something is missing or unclear, simply leave it out or note that it's insufficient.
 
 Below is the interview transcript:
-[INSERT CANDIDATE’S TRANSCRIPT HERE]
-
-Note: If some information is missing or unclear, leave fields blank or empty arrays. Do NOT add extra keys or text. 
-
 """
-             },
+            },
             {"role": "user", "content": input_pengguna}
         ]
     }
@@ -175,38 +140,38 @@ Note: If some information is missing or unclear, leave fields blank or empty arr
     if response.status_code == 200:
         hasil = response.json()
         try:
-            hasil_llm_json = json.loads(hasil['choices'][0]['message']['content'])
-            st.session_state.hasil_llm_json = hasil_llm_json
-            st.subheader("📄 Rangkuman Wawancara (Tampilan Rapi):")
-            st.json(hasil_llm_json)
+            teks_rangkuman = hasil['choices'][0]['message']['content']
+            st.session_state.hasil_llm_teks = teks_rangkuman
+            st.subheader("📄 Rangkuman Wawancara (Teks Naratif):")
+            st.text(teks_rangkuman)
         except Exception as e:
-            st.error("❌ Gagal memproses hasil JSON dari LLM.")
+            st.error("❌ Gagal memproses hasil teks dari LLM.")
     else:
         st.error(f"❌ Gagal mendapatkan data dari API. Kode Status: {response.status_code}")
 
 # -------------------------------
-# Resume Otomatis
-if st.button('🧾 Buat Resume Singkat dari Hasil Wawancara'):
-    if st.session_state.hasil_llm_json is not None:
-        data_resume = st.session_state.hasil_llm_json
+# # Resume Otomatis
+# if st.button('🧾 Buat Resume Singkat dari Hasil Wawancara'):
+#     if st.session_state.hasil_llm_json is not None:
+#         data_resume = st.session_state.hasil_llm_json
 
-        st.subheader("📋 Resume Wawancara Kandidat")
-        st.markdown(f"**Nama Kandidat:** {data_resume.get('candidate_name', '-')}")
+#         st.subheader("📋 Resume Wawancara Kandidat")
+#         st.markdown(f"**Nama Kandidat:** {data_resume.get('candidate_name', '-')}")
 
-        st.markdown("### 🔍 Analisis Umum")
-        st.markdown("**Kekuatan Utama:**")
-        for strength in data_resume['analysis']['key_strengths']:
-            st.markdown(f"- {strength}")
+#         st.markdown("### 🔍 Analisis Umum")
+#         st.markdown("**Kekuatan Utama:**")
+#         for strength in data_resume['analysis']['key_strengths']:
+#             st.markdown(f"- {strength}")
 
-        st.markdown("**Area yang Perlu Ditingkatkan:**")
-        for weakness in data_resume['analysis']['areas_for_improvement']:
-            st.markdown(f"- {weakness}")
+#         st.markdown("**Area yang Perlu Ditingkatkan:**")
+#         for weakness in data_resume['analysis']['areas_for_improvement']:
+#             st.markdown(f"- {weakness}")
 
-        st.markdown("**Inkonistensi atau Pola yang Menarik:**")
-        for inc in data_resume['analysis']['inconsistencies']:
-            st.markdown(f"- {inc}")
+#         st.markdown("**Inkonistensi atau Pola yang Menarik:**")
+#         for inc in data_resume['analysis']['inconsistencies']:
+#             st.markdown(f"- {inc}")
 
-        st.markdown("### 🧠 Kesimpulan Akhir")
-        st.markdown(f"_{data_resume['conclusion']}_")
-    else:
-        st.error("❌ Belum ada hasil wawancara yang tersedia.")
+#         st.markdown("### 🧠 Kesimpulan Akhir")
+#         st.markdown(f"_{data_resume['conclusion']}_")
+#     else:
+#         st.error("❌ Belum ada hasil wawancara yang tersedia.")
