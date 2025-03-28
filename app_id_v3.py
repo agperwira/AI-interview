@@ -68,17 +68,14 @@ for i, pertanyaan in enumerate(pertanyaan_wawancara, start=1):
         jawaban_teks = st.text_area("📝 Jawaban teks:", value=jawaban_suara, key=f"text_{i}")
         jawaban_kandidat[pertanyaan] = jawaban_teks if jawaban_teks else jawaban_suara
 
-st.expender('Masukan Prompt dan pilih model')
-prompt = st.text_area('Masukank Promp (pastikan prompt lengkap dan sesuai) :')
-option = st.selectbox(
-    "How would you like to be contacted?",
-    (
-        "deepseek-chat", 
-        "bytedance-research",
-        "google/gemini-2.5",
-        "deepseek/deepseek-r1"
+with st.expender('Masukan Prompt dan pilih model'):
+    prompt = st.text_area('Masukank Promp (pastikan prompt lengkap dan sesuai) :')
+    option = st.selectbox("How would you like to be contacted?",
+                          ("deepseek-chat", 
+                            "bytedance-research",
+                            "google/gemini-2.5",
+                            "deepseek/deepseek-r1")
     )
-)
 
 # Extract model name only
 if option == "deepseek-chat":
