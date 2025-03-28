@@ -69,7 +69,7 @@ for i, pertanyaan in enumerate(pertanyaan_wawancara, start=1):
         jawaban_kandidat[pertanyaan] = jawaban_teks if jawaban_teks else jawaban_suara
 
 with st.expander('Masukan Prompt dan pilih model'):
-    option = st.selectbox("How would you like to be contacted?",
+    option = st.selectbox("Pilih model LLM",
                           ("deepseek-chat", 
                             #"bytedance-research",
                             #"google/gemini-2.5",
