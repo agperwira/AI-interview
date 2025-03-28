@@ -68,7 +68,7 @@ for i, pertanyaan in enumerate(pertanyaan_wawancara, start=1):
         jawaban_teks = st.text_area("📝 Jawaban teks:", value=jawaban_suara, key=f"text_{i}")
         jawaban_kandidat[pertanyaan] = jawaban_teks if jawaban_teks else jawaban_suara
 
-with st.expender('Masukan Prompt dan pilih model'):
+with st.expander('Masukan Prompt dan pilih model'):
     prompt = st.text_area('Masukank Promp (pastikan prompt lengkap dan sesuai) :')
     option = st.selectbox("How would you like to be contacted?",
                           ("deepseek-chat", 
