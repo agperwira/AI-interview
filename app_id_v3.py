@@ -73,12 +73,12 @@ with st.expander('Masukan Prompt dan pilih model'):
                           ("deepseek-chat", 
                             #"bytedance-research",
                             #"google/gemini-2.5",
-                            "deepseek/deepseek-r1")
+                            "deepseek/deepseek-r1"))
     prompt = st.selectbox('apakah anda ingin mengganti promt pada LLM? ', 'ya', 'gunakan default')
     if propt == 'ya':
         prompt = st.text_area('Masukank Promp (pastikan prompt lengkap dan sesuai) :')
     else:
-        promt == """You are an expert in personality and behavioral assessment.
+        promt == ("""You are an expert in personality and behavioral assessment.
 
 You have a candidate’s interview transcript for nine predefined questions. 
 You will analyze these responses independently, WITHOUT referencing any other assessments. 
