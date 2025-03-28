@@ -69,13 +69,52 @@ for i, pertanyaan in enumerate(pertanyaan_wawancara, start=1):
         jawaban_kandidat[pertanyaan] = jawaban_teks if jawaban_teks else jawaban_suara
 
 with st.expander('Masukan Prompt dan pilih model'):
-    prompt = st.text_area('Masukank Promp (pastikan prompt lengkap dan sesuai) :')
     option = st.selectbox("How would you like to be contacted?",
                           ("deepseek-chat", 
-                            "bytedance-research",
-                            "google/gemini-2.5",
+                            #"bytedance-research",
+                            #"google/gemini-2.5",
                             "deepseek/deepseek-r1")
-    )
+    prompt = st.selectbox('apakah anda ingin mengganti promt pada LLM? ', 'ya', 'gunakan default')
+    if propt == 'ya':
+        prompt = st.text_area('Masukank Promp (pastikan prompt lengkap dan sesuai) :')
+    else:
+        promt == """You are an expert in personality and behavioral assessment.
+
+You have a candidate’s interview transcript for nine predefined questions. 
+You will analyze these responses independently, WITHOUT referencing any other assessments. 
+
+Please return the output in a readable, structured text format that is easy to understand. Do NOT return JSON or code blocks. Follow the structure below exactly and use clear, professional language.
+
+== Candidate Interview Analysis ==
+
+Candidate Name: [Insert candidate name based on transcript or leave blank if not provided]
+
+1. Question 1 Summary:
+[Summarize the candidate's response]
+Observed Traits: [List any relevant personality traits]
+
+2. Question 2 Summary:
+...
+
+(continue through Question 9 in the same format)
+
+== Overall Analysis ==
+Key Strengths:
+- [Bullet point strengths based on patterns in responses]
+
+Areas for Improvement:
+- [Bullet point areas where candidate could improve]
+
+Inconsistencies or Patterns:
+- [Bullet point any contradictions or notable behavioral patterns]
+
+== Final Impression ==
+[A short paragraph (1–3 sentences) giving your conclusion based only on the interview responses.]
+
+Only use content from the transcript. If something is missing or unclear, simply leave it out or note that it's insufficient.
+
+Below is the interview transcript:
+""")
 
 # Extract model name only
 if option == "deepseek-chat":
