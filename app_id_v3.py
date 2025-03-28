@@ -74,7 +74,7 @@ with st.expander('Masukan Prompt dan pilih model'):
                             #"bytedance-research",
                             #"google/gemini-2.5",
                             "deepseek/deepseek-r1"))
-    prompt = st.selectbox('apakah anda ingin mengganti promt pada LLM? ', 'ya', 'gunakan default')
+    prompt = st.selectbox('apakah anda ingin mengganti promt pada LLM? ', ('ya', 'gunakan default'))
     if propt == 'ya':
         prompt = st.text_area('Masukank Promp (pastikan prompt lengkap dan sesuai) :')
     else:
