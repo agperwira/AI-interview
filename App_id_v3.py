@@ -17,38 +17,38 @@ headers = {
 }
 
 # Fungsi untuk mengonversi JSON menjadi teks
-def convert_json_to_text(json_data):
-    text = "Hasil Wawancara - JSON\n\n"
-    text += "== Kandidat ==\n"
-    text += f"Nama: {json_data['candidate_name']}\n"
-    text += f"Usia: {json_data['usia']}\n"
-    text += f"Jenis Kelamin: {json_data['jenis_kelamin']}\n"
+# def convert_json_to_text(json_data):
+#     text = "Hasil Wawancara - JSON\n\n"
+#     text += "== Kandidat ==\n"
+#     text += f"Nama: {json_data['candidate_name']}\n"
+#     text += f"Usia: {json_data['usia']}\n"
+#     text += f"Jenis Kelamin: {json_data['jenis_kelamin']}\n"
     
-    text += "\n== Kekuatan Utama ==\n"
-    for item in json_data['analysis']['key_strengths']:
-        text += f"- {item}\n"
+#     text += "\n== Kekuatan Utama ==\n"
+#     for item in json_data['analysis']['key_strengths']:
+#         text += f"- {item}\n"
 
-    text += "\n== Area Perbaikan ==\n"
-    for item in json_data['analysis']['areas_for_improvement']:
-        text += f"- {item}\n"
+#     text += "\n== Area Perbaikan ==\n"
+#     for item in json_data['analysis']['areas_for_improvement']:
+#         text += f"- {item}\n"
 
-    text += "\n== Inkonistensi ==\n"
-    for item in json_data['analysis']['inconsistencies']:
-        text += f"- {item}\n"
+#     text += "\n== Inkonistensi ==\n"
+#     for item in json_data['analysis']['inconsistencies']:
+#         text += f"- {item}\n"
     
-    text += "\n== Kesimpulan ==\n"
-    text += f"{json_data['conclusion']}\n"
-    return text
+#     text += "\n== Kesimpulan ==\n"
+#     text += f"{json_data['conclusion']}\n"
+#     return text
 
-# Fungsi untuk membuat PDF dari teks
-def create_pdf_from_text(text):
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_auto_page_break(auto=True, margin=15)
-    pdf.set_font("Arial", size=12)
-    for line in text.split('\n'):
-        pdf.multi_cell(0, 10, line)
-    return pdf.output(dest='S').encode('latin-1')
+# # Fungsi untuk membuat PDF dari teks
+# def create_pdf_from_text(text):
+#     pdf = FPDF()
+#     pdf.add_page()
+#     pdf.set_auto_page_break(auto=True, margin=15)
+#     pdf.set_font("Arial", size=12)
+#     for line in text.split('\n'):
+#         pdf.multi_cell(0, 10, line)
+#     return pdf.output(dest='S').encode('latin-1')
 
 # ----------------------
 # Inisialisasi session state
