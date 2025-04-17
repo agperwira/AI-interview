@@ -257,24 +257,24 @@ if st.session_state.result_json:
     st.markdown(f"_{r['conclusion']}_")
 
 # Fungsi untuk menampilkan tombol download PDF
-# def tombol_download_pdf_dari_json(json_file_path):
-    # Membaca file JSON yang disimpan
-    with open(json_file_path, 'r') as json_file:
-        json_data = json.load(json_file)
+# # def tombol_download_pdf_dari_json(json_file_path):
+#     # Membaca file JSON yang disimpan
+#     with open(json_file_path, 'r') as json_file:
+#         json_data = json.load(json_file)
     
-    # Mengonversi JSON ke teks
-    resume_text = convert_json_to_text(json_data)
+#     # Mengonversi JSON ke teks
+#     resume_text = convert_json_to_text(json_data)
     
-    # Membuat PDF dari teks
-    pdf_bytes = create_pdf_from_text(resume_text)
+#     # Membuat PDF dari teks
+#     pdf_bytes = create_pdf_from_text(resume_text)
     
-    # Menampilkan tombol untuk mendownload PDF
-    st.download_button(
-        label="📄 Download PDF",
-        data=pdf_bytes,
-        file_name="hasil_wawancara_kandidat.pdf",
-        mime='application/pdf'
-    )
+#     # Menampilkan tombol untuk mendownload PDF
+#     st.download_button(
+#         label="📄 Download PDF",
+#         data=pdf_bytes,
+#         file_name="hasil_wawancara_kandidat.pdf",
+#         mime='application/pdf'
+#     )
 
 # Memanggil fungsi dan menyediakan tombol untuk mengunduh PDF
 
