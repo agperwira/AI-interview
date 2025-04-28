@@ -7,7 +7,7 @@ import speech_recognition as sr
 
 # ----------------------
 # Konfigurasi API LLM
-API_KEY = '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'
+API_KEY = st.secrets['API_KEY']
 API_URL = 'https://openrouter.ai/api/v1/chat/completions'
 headers = {
     'Authorization': f'Bearer {API_KEY}',
